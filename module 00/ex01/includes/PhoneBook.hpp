@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:45:45 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/12 18:18:49 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:08:19 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ class	PhoneBook
 		void	search (void);
 	
 	private:
-		Contact	contact[8];
-		int		contactCount;
-		void	display( void );
+		Contact	_contact[8];
+		int		_contactCount;
+		void	_display( void );
 };
 
 #endif
