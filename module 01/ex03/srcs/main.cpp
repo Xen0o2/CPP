@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:13:47 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/13 15:53:57 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:58:30 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int main()
 		club.setType("some other type of club");
 		jim.attack();
 	}
-
-	Weapon *caca = new Weapon("Bonsoir");
-	(void)caca;
+	
 	return (0);
 }
