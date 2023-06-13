@@ -5,16 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/13 11:35:56 by alecoutr          #+#    #+#              #
-#    Updated: 2023/06/13 12:04:46 by alecoutr         ###   ########.fr        #
+#    Created: 2023/06/13 17:03:43 by alecoutr          #+#    #+#              #
+#    Updated: 2023/06/13 17:44:32 by alecoutr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= Zombie
+NAME		= HarlFilter
 SRCS		= srcs/main.cpp \
-			  srcs/Zombie.cpp \
-			  srcs/zombieHorde.cpp
-
+			  srcs/Harl.cpp
 INCLUDES	= -I ./includes
 
 OBJS		= $(SRCS:.cpp=.o)
