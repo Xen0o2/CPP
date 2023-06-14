@@ -7,7 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 00:47:16 by alecoutr          #+#    #+#             */
 /*   Updated: 2023/06/14 02:06:24 by alecoutr         ###   ########.fr       */
-/*                                                                            */
+/*                                                                             */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
@@ -27,7 +27,7 @@ ClapTrap::ClapTrap( ClapTrap const &src )
 
 ClapTrap::~ClapTrap( void )
 {
-	std::cout << "ClapTrap destructor has been called" << std::endl;
+	std::cout << "ClapTrap destructor called" << std::endl;
 	return;
 }
 
