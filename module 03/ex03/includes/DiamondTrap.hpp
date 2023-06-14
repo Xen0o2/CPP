@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 00:45:18 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/14 01:35:17 by alecoutr         ###   ########.fr       */
+/*   Created: 2023/06/14 20:06:59 by alecoutr          #+#    #+#             */
+/*   Updated: 2023/06/14 21:08:13 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_H
-# define CLAPTRAP_H
+#ifndef DIAMONDTRAP_H
+# define DIAMONDTRAP_H
 
-# include <iostream>
-# include <string.h>
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
 
-class ClapTrap
+class DiamondTrap: public FragTrap, public ScavTrap
 {
 	private:
-		std::string		_Name;
-		unsigned int	_HitPoints;
-		unsigned int	_EnergyPoints;
-		unsigned int	_AttackDamage;
-	public:
-		ClapTrap( std::string name );
-		ClapTrap( ClapTrap const &src);
-		~ClapTrap( void );
+		std::string	_Name;
 
-		ClapTrap	&operator=( ClapTrap const &rhs );
+	public:
+		DiamondTrap( std::string name );
+		DiamondTrap( DiamondTrap const &copy );
+		DiamondTrap	&operator=( DiamondTrap const &rhs );
+		virtual ~DiamondTrap( void );
 
 		void	attack( std::string const &target );
-		void	takeDamage( unsigned int amount);
-		void	beRepaired( unsigned int amount);
+		void	whoAmI( void );
 };
 
 #endif
