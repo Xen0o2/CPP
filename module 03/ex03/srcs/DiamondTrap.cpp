@@ -6,13 +6,13 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:39:06 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/14 21:09:21 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:48:47 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap( std::string name): ClapTrap(name + "_clap_trap")
+DiamondTrap::DiamondTrap( std::string name): ClapTrap(name + "_clap_name")
 {
 	this->_Name = name;
 	this->_HitPoints = FragTrap::_HitPoints;
@@ -31,7 +31,7 @@ DiamondTrap::DiamondTrap( DiamondTrap const &copy ): ClapTrap(copy), FragTrap(co
 DiamondTrap	&DiamondTrap::operator=( DiamondTrap const &rhs )
 {
 	std::cout << "DiamondTrap assignment operator called" << std::endl;
-	this->_Name = rhs._Name + "_clap_trap";
+	this->_Name = rhs._Name + "_clap_name";
 	this->_HitPoints = rhs._HitPoints;
 	this->_EnergyPoints = rhs._EnergyPoints;
 	this->_AttackDamage = rhs._AttackDamage;
