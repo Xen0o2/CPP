@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 21:15:51 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/15 18:02:14 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:56:49 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ class Animal
 {
 	protected:
 		std::string _type;
+
+	public:
 		Animal( void );
 		Animal( std::string type );
 		Animal( Animal const &copy );
-
-	public:
 		Animal	&operator=( Animal const &rhs );
 		virtual ~Animal( void );
 
-		virtual void makeSound( void ) const;
+		virtual void makeSound( void ) const = 0;
 		std::string getType( void ) const;
 };
 
