@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:29:21 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:13:37 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/04 07:50:59 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,13 @@ void    ShrubberyCreationForm::beExecuted( Bureaucrat const &executor ) const
     << std::endl;
 
     outfile.close();
+}
+
+Form    *ShrubberyCreationForm::makeForm( Form *form, std::string const &type, std::string const &target )
+{
+    if (!form && type == "shrubbery creation")
+        return (new ShrubberyCreationForm(target));
+    return (form);
 }
 
 std::ostream &operator<<( std::ostream &o, ShrubberyCreationForm *form )

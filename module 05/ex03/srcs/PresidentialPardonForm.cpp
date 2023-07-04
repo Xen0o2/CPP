@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:29:21 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:47:23 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/04 07:50:43 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ void    PresidentialPardonForm::beExecuted( Bureaucrat const &executor ) const
 {
     (void)executor;
     std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+}
+
+Form    *PresidentialPardonForm::makeForm( Form *form, std::string const &type, std::string const &target )
+{
+    if (!form && type == "presidential pardon")
+        return (new PresidentialPardonForm(target));
+    return (form);
 }
 
 std::ostream &operator<<( std::ostream &o, PresidentialPardonForm *form )

@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:29:21 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:13:51 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/04 07:50:51 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ void    RobotomyRequestForm::beExecuted( Bureaucrat const &executor ) const
         std::cout << "Target" << this->_target << " has been robotomised successfuly !" << std::endl;
     else
         std::cout << this->_target << " robotomisation has failed !" << std::endl;
+}
+
+Form    *RobotomyRequestForm::makeForm( Form *form, std::string const &type, std::string const &target )
+{
+    if (!form && type == "robotomy request")
+        return (new RobotomyRequestForm(target));
+    return (form);
 }
 
 std::ostream &operator<<( std::ostream &o, RobotomyRequestForm *form )

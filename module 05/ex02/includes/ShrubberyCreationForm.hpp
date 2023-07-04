@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:37:47 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/03 18:16:58 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/04 07:13:09 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,5 @@ class ShrubberyCreationForm: public Form
         std::string getTarget( void ) const;
         void    beExecuted( Bureaucrat const &executor ) const;
 };
+
+std::ostream	&operator<<(std::ostream &o, ShrubberyCreationForm &form);

@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:37:47 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:13:00 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/04 07:43:02 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class RobotomyRequestForm: public Form
 
         std::string getTarget( void ) const;
         void    beExecuted( Bureaucrat const &executor ) const;
+        static Form    *makeForm( Form *form, std::string const &type, std::string const &target );
 };
 
 std::ostream	&operator<<(std::ostream &o, RobotomyRequestForm &form);
