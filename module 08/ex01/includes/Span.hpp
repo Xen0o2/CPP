@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 08:36:11 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/08 09:15:12 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/08 09:34:57 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ class Span
 {
 	private:
 		unsigned int		_N;
+		std::vector<int>	_vector;
 
 	public:
-		std::vector<int>	_vector;
 		Span( void );
 		Span( unsigned int N );
 		Span( Span const &copy );
