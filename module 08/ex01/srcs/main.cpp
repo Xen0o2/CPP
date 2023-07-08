@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 09:22:47 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/08 09:34:53 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/08 09:41:33 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	main(void)
 {
-	int size = 10000;
+	int size = 50;
 	Span span = Span(size);
 
-	for(int i = 0; i < size; i++)
+	for(int i = 0; i < size / 2; i++)
 		span.addNumber( rand() % size );
 		//span.addNumber( i );
+	
+	span.addNumbers(size / 2, false);
 	
 	try
 	{
@@ -27,7 +29,7 @@ int	main(void)
 	}
 	catch( Span::VectorFullException &e )
 	{
-		std::cout << "Can't add more number because : " << e.what() << std::endl;
+		std::cerr << "Can't add more number because : " << e.what() << std::endl;
 	}
 
 	std::cout << "Shortest span is : " << span.shortestSpan() << std::endl;

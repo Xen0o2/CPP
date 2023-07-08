@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 08:37:54 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/08 09:34:45 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/08 09:40:36 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,21 @@ void	Span::addNumber( int number )
 	if (this->_vector.size() == this->_N)
 		throw Span::VectorFullException();
 	this->_vector.push_back(number);
+}
+
+void	Span::addNumbers( int range, bool isRandom )
+{
+	for(int i = 0; i < range; i++)
+	{
+		try
+		{
+			addNumber(isRandom ? rand() % range : i);	
+		}
+		catch (Span::VectorFullException &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+	}	
 }
 
 int		Span::shortestSpan( void )
