@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:01:03 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/10 10:14:14 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:54:33 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,11 @@ std::vector<std::string>	BitcoinExchange::split( std::string line )
 	for(size_t i = 0; i < line.length(); i++)
 	{
 		if (line[i] != '|')
-			tmp += line[i++];
-		else
+			tmp += line[i];
+		else if (tmp.length() != 0)
 		{
 			result.push_back(tmp);
 			tmp = "";
-			while (line[i] == '|')
-				i++;			
 		}
 	}
 	
@@ -110,7 +108,6 @@ void	BitcoinExchange::readInput( std::string path )
 
 	std::string 				line;
 	std::vector<std::string>	lineVector;
-	int							i = 1;
 
 	std::getline(file, line);
 	while (std::getline(file, line))
@@ -118,7 +115,7 @@ void	BitcoinExchange::readInput( std::string path )
 		lineVector = this->split(line);
 		if (lineVector.size() != 2)
 		{
-			std::cout << "Error: bad input at line " << (i + 1) << std::endl;
+			std::cout << "Error: bad input => " << lineVector[0] << std::endl;
 			continue;
 		}
 
@@ -129,11 +126,11 @@ void	BitcoinExchange::readInput( std::string path )
 			try
 			{
 				if (std::stof(lineVector[1]) > 1000)
-					std::cout << "Error: Value must be lower than 1000" << std::endl;
+					std::cout << "Error: too large a number." << std::endl;
 				else if(std::stof(lineVector[1]) < 0)
-					std::cout << "Error: Value must be greater than 0" << std::endl;
+					std::cout << "Error: not a positive number." << std::endl;
 				else
-					std::cout << lineVector[0] << " => " << lineVector[1] << " = " << (std::stof(lineVector[1]) * pair.second) << std::endl;
+					std::cout << lineVector[0] << "=>" << lineVector[1] << " = " << (std::stof(lineVector[1]) * pair.second) << std::endl;
 			}
 			catch (std::exception &e)
 			{
