@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 10:54:54 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/08 11:55:35 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:13:17 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <fstream>
 # include <map>
+# include <vector>
 
 class BitcoinExchange
 {

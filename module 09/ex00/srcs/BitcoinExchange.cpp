@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:01:03 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/08 12:04:43 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:14:14 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ std::vector<std::string>	BitcoinExchange::split( std::string line )
 	std::vector<std::string>	result;
 	std::string					tmp = "";
 
-	for(int i = 0; i < line.length(); i++)
+	for(size_t i = 0; i < line.length(); i++)
 	{
 		if (line[i] != '|')
 			tmp += line[i++];
@@ -106,7 +106,7 @@ void	BitcoinExchange::readInput( std::string path )
 {
 	std::ifstream file (path);
 	if (!file.is_open())
-		throw BitcoinExchange::cantOpenInputFile();
+		throw BitcoinExchange::cantOpenInputException();
 
 	std::string 				line;
 	std::vector<std::string>	lineVector;
@@ -115,12 +115,31 @@ void	BitcoinExchange::readInput( std::string path )
 	std::getline(file, line);
 	while (std::getline(file, line))
 	{
-		vectorLine = this->split(line);
-		if (vectorLine.size() != 2)
+		lineVector = this->split(line);
+		if (lineVector.size() != 2)
 		{
 			std::cout << "Error: bad input at line " << (i + 1) << std::endl;
 			continue;
 		}
-		
+
+		std::map<std::string, float>::iterator it = this->_data.upper_bound(lineVector[0]);
+		if (it != this->_data.end())
+		{
+			std::pair<std::string, float> pair = *(--it);
+			try
+			{
+				if (std::stof(lineVector[1]) > 1000)
+					std::cout << "Error: Value must be lower than 1000" << std::endl;
+				else if(std::stof(lineVector[1]) < 0)
+					std::cout << "Error: Value must be greater than 0" << std::endl;
+				else
+					std::cout << lineVector[0] << " => " << lineVector[1] << " = " << (std::stof(lineVector[1]) * pair.second) << std::endl;
+			}
+			catch (std::exception &e)
+			{
+				std::cout << "Error: Input is not a number (" << e.what() << ")" << std::endl;
+				continue;
+			}
+		}
 	}
 }
