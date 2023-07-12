@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:47:09 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/11 11:55:16 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/07/12 07:20:42 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ PhoneBook::~PhoneBook( void )
 int    PhoneBook::add( void )
 {
     if (this->_contactCount >= 8)
-        std::cout << std::endl << "Contact plein, vous allez remplacer le contact " << (this->_contactCount % 8) << " !" << std::endl << std::endl;
+        std::cout << std::endl << "Contact plein, vous allez remplacer le contact " << ((this->_contactCount % 8) + 1) << " !" << std::endl << std::endl;
     
     Contact     contact;
     std::string tmp = "";
@@ -68,7 +68,6 @@ int    PhoneBook::add( void )
             std::cout << contact.getFirstname() << " a été ajouté avec succès (" << ((this->_contactCount + 1) > 8 ? 8 : this->_contactCount + 1) << "/8)" << std::endl;
         }
     }
-    std::cout << "je modifie " << this->_contactCount % 8 << std::endl;
     this->_contact[this->_contactCount % 8] = contact;
     this->_contactCount++;
     return (1);
