@@ -6,14 +6,14 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 21:15:51 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/15 17:39:52 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/08/21 09:56:56 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_H
 # define DOG_H
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
 
 class Dog: public Animal
