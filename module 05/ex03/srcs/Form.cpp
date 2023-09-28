@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:29:21 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:49:05 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:49:11 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,37 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-Form::Form( void ): _name("default")
+
+Form::Form( void ): _name("default"), _gradeRequiredForSignature(150), _gradeRequiredForExecution(150)
 {
     this->_isSigned = false;
-    this->_gradeRequiredForSignature = 150;
-    this->_gradeRequiredForExecution = 150;
     std::cout << "Form default constructor called" << std::endl;
     return;
 }
 
-Form::Form( std::string name ): _name(name)
+Form::Form( int gradeRequiredForSignature, int gradeRequiredForExecution ): _name("default"), _gradeRequiredForSignature(gradeRequiredForSignature), _gradeRequiredForExecution(gradeRequiredForExecution)
 {
     this->_isSigned = false;
-    this->_gradeRequiredForSignature = 150;
-    this->_gradeRequiredForExecution = 150;
     std::cout << "Form string constructor called" << std::endl;
     return;
 }
 
-Form::Form( Form const &copy )
+Form::Form( std::string name, int gradeRequiredForSignature, int gradeRequiredForExecution ): _name(name), _gradeRequiredForSignature(gradeRequiredForSignature), _gradeRequiredForExecution(gradeRequiredForExecution)
+{
+    this->_isSigned = false;
+    std::cout << "Form string constructor called" << std::endl;
+    return;
+}
+
+Form::Form( Form const &copy ): _name(copy.getName()), _gradeRequiredForSignature(copy.getGradeRequiredForSignature()), _gradeRequiredForExecution(copy.getGradeRequiredForExecution())
 {
     std::cout << "Form copy constructor called" << std::endl;
-    *this = copy;
     return;
 }
 
 Form    &Form::operator=( Form const &rhs )
 {
     this->_isSigned = rhs._isSigned;   
-    this->_gradeRequiredForSignature = rhs._gradeRequiredForSignature;
-    this->_gradeRequiredForExecution = rhs._gradeRequiredForExecution;
     std::cout << "Form assignment operator called" << std::endl;
     return (*this);
 }
@@ -55,7 +56,7 @@ Form::~Form( void )
     return;
 }
 
-std::string const Form::getName( void ) const
+std::string Form::getName( void ) const
 {
     return (this->_name);
 }
@@ -89,34 +90,14 @@ void    Form::beSigned( Bureaucrat &bureaucrat )
         throw (Bureaucrat::GradeTooLowException());
 }
 
-int     Form::getGradeRequiredForSignature( void )
+int     Form::getGradeRequiredForSignature( void ) const
 {
     return (this->_gradeRequiredForSignature);
 }
 
-void Form::setGradeRequiredForSignature( int gradeRequiredForSignature )
-{
-    if (gradeRequiredForSignature > 150)
-        throw Form::GradeTooLowException();
-    else if (gradeRequiredForSignature < 1)
-        throw Form::GradeTooHighException();
-    else
-        this->_gradeRequiredForSignature = gradeRequiredForSignature;
-}
-
-int     Form::getGradeRequiredForExecution( void )
+int     Form::getGradeRequiredForExecution( void ) const
 {
     return (this->_gradeRequiredForExecution);
-}
-
-void Form::setGradeRequiredForExecution( int gradeRequiredForExecution )
-{
-    if (gradeRequiredForExecution > 150)
-        throw Form::GradeTooLowException();
-    else if (gradeRequiredForExecution < 1)
-        throw Form::GradeTooHighException();
-    else
-        this->_gradeRequiredForExecution = gradeRequiredForExecution;
 }
 
 void Form::execute( Bureaucrat const &executor ) const
@@ -140,8 +121,7 @@ Form    *Form::makeForm( std::string const &type, std::string const &target )
     form = PresidentialPardonForm::makeForm(form, type, target);
     form = RobotomyRequestForm::makeForm(form, type, target);
     form = ShrubberyCreationForm::makeForm(form, type, target);
-    return (form);
-    
+    return (form);   
 }
 
 const char *Form::GradeTooHighException::what( void ) const throw()
@@ -163,7 +143,6 @@ const char  *Form::InvalidFormException::what( void ) const throw()
 {
     return ("Invalid Form type");
 }
-
 
 std::ostream &operator<<( std::ostream &o, Form *a )
 {

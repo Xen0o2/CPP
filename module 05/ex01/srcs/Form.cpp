@@ -3,45 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:29:21 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/30 17:27:52 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:17:17 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form( void ): _name("default")
+Form::Form( void ): _name("default"), _gradeRequiredForSignature(150), _gradeRequiredForExecution(150)
 {
-    this->_isSigned = false;
-    this->_gradeRequiredForSignature = 150;
-    this->_gradeRequiredForExecution = 150;
+    _isSigned = false;
     std::cout << "Form default constructor called" << std::endl;
     return;
 }
 
-Form::Form( std::string name ): _name(name)
+Form::Form( int gradeRequiredForSignature, int gradeRequiredForExecution): _name("default"), _gradeRequiredForSignature(gradeRequiredForSignature), _gradeRequiredForExecution(gradeRequiredForExecution)
 {
-    this->_isSigned = false;
-    this->_gradeRequiredForSignature = 150;
-    this->_gradeRequiredForExecution = 150;
+    if (gradeRequiredForSignature > 150 || gradeRequiredForExecution > 150)
+        throw Form::GradeTooLowException();
+    else if (gradeRequiredForSignature < 1 || gradeRequiredForExecution < 1)
+        throw Form::GradeTooHighException();
+    _isSigned = false;
     std::cout << "Form string constructor called" << std::endl;
     return;
 }
 
-Form::Form( Form const &copy )
+Form::Form( std::string name, int gradeRequiredForSignature, int gradeRequiredForExecution): _name(name), _gradeRequiredForSignature(gradeRequiredForSignature), _gradeRequiredForExecution(gradeRequiredForExecution)
+{
+    if (gradeRequiredForSignature > 150 || gradeRequiredForExecution > 150)
+        throw Form::GradeTooLowException();
+    else if (gradeRequiredForSignature < 1 || gradeRequiredForExecution < 1)
+        throw Form::GradeTooHighException();
+    _isSigned = false;
+    std::cout << "Form string constructor called" << std::endl;
+    return;
+}
+
+Form::Form( Form const &copy ): _name(copy.getName()), _gradeRequiredForSignature(copy.getGradeRequiredForSignature()), _gradeRequiredForExecution(copy.getGradeRequiredForExecution())
 {
     std::cout << "Form copy constructor called" << std::endl;
-    *this = copy;
     return;
 }
 
 Form    &Form::operator=( Form const &rhs )
 {
-    this->_isSigned = rhs._isSigned;   
-    this->_gradeRequiredForSignature = rhs._gradeRequiredForSignature;
-    this->_gradeRequiredForExecution = rhs._gradeRequiredForExecution;
+    _isSigned = rhs._isSigned;   
     std::cout << "Form assignment operator called" << std::endl;
     return (*this);
 }
@@ -52,16 +60,16 @@ Form::~Form( void )
     return;
 }
 
-std::string Form::getName( void )
+std::string Form::getName( void ) const
 {
-    return (this->_name);
+    return (_name);
 }
 
 
 
 std::string    Form::getIsSigned( void )
 {
-    if (this->_isSigned)
+    if (_isSigned)
         return ("Signed");
     else
         return ("Not signed");
@@ -69,51 +77,31 @@ std::string    Form::getIsSigned( void )
 
 bool    Form::getIsSignedBool( void )
 {
-    return (this->_isSigned);
+    return (_isSigned);
 }
 
 void    Form::beSigned( Bureaucrat &bureaucrat )
 {
-    std::cout << bureaucrat.getName() << " bureaucrat is trying to sign " << this->_name << " Form" << std::endl;
-    if (this->_isSigned)
+    std::cout << bureaucrat.getName() << " bureaucrat is trying to sign " << _name << " Form" << std::endl;
+    if (_isSigned)
         std::cout << "Form already signed" << std::endl;
-    else if (bureaucrat.getGrade() <= this->_gradeRequiredForSignature)
+    else if (bureaucrat.getGrade() <= _gradeRequiredForSignature)
     {
-        this->_isSigned = 1;
-        std::cout << this->_name << " form signed by " << bureaucrat.getName() << " bureaucrat" << std::endl;
+        _isSigned = 1;
+        std::cout << _name << " form signed by " << bureaucrat.getName() << " bureaucrat" << std::endl;
     }
     else
         throw Form::GradeTooLowException();
 }
 
-int     Form::getGradeRequiredForSignature( void )
+int	Form::getGradeRequiredForSignature( void ) const
 {
-    return (this->_gradeRequiredForSignature);
+    return (_gradeRequiredForSignature);
 }
 
-void Form::setGradeRequiredForSignature( int gradeRequiredForSignature )
+int Form::getGradeRequiredForExecution( void ) const
 {
-    if (gradeRequiredForSignature > 150)
-        throw Form::GradeTooLowException();
-    else if (gradeRequiredForSignature < 1)
-        throw Form::GradeTooHighException();
-    else
-        this->_gradeRequiredForSignature = gradeRequiredForSignature;
-}
-
-int     Form::getGradeRequiredForExecution( void )
-{
-    return (this->_gradeRequiredForExecution);
-}
-
-void Form::setGradeRequiredForExecution( int gradeRequiredForExecution )
-{
-    if (gradeRequiredForExecution > 150)
-        throw Form::GradeTooLowException();
-    else if (gradeRequiredForExecution < 1)
-        throw Form::GradeTooHighException();
-    else
-        this->_gradeRequiredForExecution = gradeRequiredForExecution;
+    return (_gradeRequiredForExecution);
 }
 
 const char *Form::GradeTooHighException::what( void ) const throw()

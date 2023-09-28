@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:59:04 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/30 17:17:50 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:15:32 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,24 @@ class Bureaucrat;
 class Form
 {
     private:
-        std::string const _name;
-        bool	_isSigned;
-        int		_gradeRequiredForSignature;
-		int		_gradeRequiredForExecution;
+        std::string const	_name;
+        bool				_isSigned;
+        int const			_gradeRequiredForSignature;
+		int const			_gradeRequiredForExecution;
     public:
         Form( void );
-        Form( std::string name );
+		Form( int gradeRequiredForSignature, int gradeRequiredForExecution );
+        Form( std::string name, int gradeRequiredForSignature, int gradeRequiredForExecution );
         Form( Form const &copy );
         Form( &operator=( Form const & rhs ));
         ~Form( void );
 
-		std::string getName( void );
+		std::string getName( void ) const;
 		std::string	getIsSigned( void );
-		bool	getIsSignedBool( void );
-		void	beSigned( Bureaucrat &bureaucrat );
-		int		getGradeRequiredForSignature( void );
-		void	setGradeRequiredForSignature( int gradeRequiredForSignature );
-		int		getGradeRequiredForExecution( void );
-		void	setGradeRequiredForExecution( int gradeRequiredForExecution );
+		bool		getIsSignedBool( void );
+		void		beSigned( Bureaucrat &bureaucrat );
+		int			getGradeRequiredForExecution( void ) const;
+		int			getGradeRequiredForSignature( void ) const;
 		
 		class GradeTooHighException: public std::exception
 		{

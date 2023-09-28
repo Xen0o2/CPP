@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:49:18 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/30 17:01:17 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:16:33 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,9 @@ int main(void)
 		std::cout << std::endl;
 
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		Bureaucrat *a = new Bureaucrat("Assistant");
-		a->setGrade(145);
-		Bureaucrat *b = new Bureaucrat("CEO");
-		b->setGrade(1);
-		Form *c = new Form("Rent Contract");
-		c->setGradeRequiredForSignature(140);
-		c->setGradeRequiredForExecution(100);
+		Bureaucrat *a = new Bureaucrat("Assistant", 145);
+		Bureaucrat *b = new Bureaucrat("CEO", 1);
+		Form *c = new Form("Rent Contract", 140, 100);
 		std::cout << std::endl;
 
 		std::cout << "\033[34mTesting\033[0m" << std::endl;
@@ -105,9 +101,7 @@ int main(void)
 		// sign-grade too high
 		try
 		{
-			a = new Form();
-			a->setGradeRequiredForSignature(160);
-			a->setGradeRequiredForExecution(145);
+			a = new Form(160, 145);
 		}
 		catch (Form::GradeTooLowException &e)
 		{
@@ -118,9 +112,7 @@ int main(void)
 		// exec-grade too high
 		try
 		{
-			a = new Form();
-			a->setGradeRequiredForSignature(145);
-			a->setGradeRequiredForExecution(160);
+			a = new Form(145, 160);
 		}
 		catch (Form::GradeTooLowException &e)
 		{
@@ -131,9 +123,7 @@ int main(void)
 		// sign-grade too low
 		try
 		{
-			a = new Form();
-			a->setGradeRequiredForSignature(-15);
-			a->setGradeRequiredForExecution(145);
+			a = new Form(-15, 145);
 		}
 		catch (Form::GradeTooHighException &e)
 		{
@@ -144,9 +134,7 @@ int main(void)
 		// exec-grade too low
 		try
 		{
-			a = new Form();
-			a->setGradeRequiredForSignature(145);
-			a->setGradeRequiredForExecution(-15);
+			a = new Form(145, -15);
 		}
 		catch (Form::GradeTooHighException &e)
 		{

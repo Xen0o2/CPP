@@ -6,32 +6,26 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:29:21 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:50:43 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:50:28 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm( void ): Form("PresidentialPardonForm"), _target("default")
+PresidentialPardonForm::PresidentialPardonForm( void ): Form("PresidentialPardonForm", PRESIDENTIAL_SIGNATURE, PRESIDENTIAL_EXECUTION), _target("default")
 { 
-    this->_gradeRequiredForSignature = PRESIDENTIAL_SIGNATURE;
-    this->_gradeRequiredForExecution = PRESIDENTIAL_EXECUTION;
     std::cout << "PresidentialPardonForm default constructor called" << std::endl;
     return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm( std::string target ): Form("PresidentialPardonForm"), _target(target)
+PresidentialPardonForm::PresidentialPardonForm( std::string target ): Form("PresidentialPardonForm", PRESIDENTIAL_SIGNATURE, PRESIDENTIAL_EXECUTION), _target(target)
 {
-    this->_gradeRequiredForSignature = PRESIDENTIAL_SIGNATURE;
-    this->_gradeRequiredForExecution = PRESIDENTIAL_EXECUTION;
     std::cout << "PresidentialPardonForm string constructor for target " << target << " called" << std::endl;
     return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm( PresidentialPardonForm const &copy ): Form("PresidentialPardonForm"), _target(copy._target)
+PresidentialPardonForm::PresidentialPardonForm( PresidentialPardonForm const &copy ): Form("PresidentialPardonForm", copy.getGradeRequiredForSignature(), copy.getGradeRequiredForExecution()), _target(copy._target)
 {
-    this->_gradeRequiredForSignature = copy._gradeRequiredForSignature;
-    this->_gradeRequiredForExecution = copy._gradeRequiredForExecution;
     *this = copy;
     std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
     return;
@@ -64,7 +58,7 @@ void    PresidentialPardonForm::beExecuted( Bureaucrat const &executor ) const
 
 Form    *PresidentialPardonForm::makeForm( Form *form, std::string const &type, std::string const &target )
 {
-    if (!form && type == "presidential pardon")
+    if (!form && type == "PresidentialPardonForm")
         return (new PresidentialPardonForm(target));
     return (form);
 }

@@ -6,32 +6,26 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:29:21 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:13:37 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:30:26 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ): Form("ShrubberyCreationForm"), _target("default")
+ShrubberyCreationForm::ShrubberyCreationForm( void ): Form("ShrubberyCreationForm", SHRUBERRY_SIGNATURE, SHRUBERRY_EXECUTION), _target("default")
 { 
-    this->_gradeRequiredForSignature = SHRUBERRY_SIGNATURE;
-    this->_gradeRequiredForExecution = SHRUBERRY_EXECUTION;
     std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
     return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( std::string target ): Form("ShrubberyCreationForm"), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm( std::string target ): Form("ShrubberyCreationForm", SHRUBERRY_SIGNATURE, SHRUBERRY_EXECUTION), _target(target)
 {
-    this->_gradeRequiredForSignature = SHRUBERRY_SIGNATURE;
-    this->_gradeRequiredForExecution = SHRUBERRY_EXECUTION;
     std::cout << "ShrubberyCreationForm string constructor for target " << target << " called" << std::endl;
     return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm const &copy ): Form("ShrubberyCreationForm"), _target(copy._target)
+ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm const &copy ): Form("ShrubberyCreationForm", copy.getGradeRequiredForSignature(), copy.getGradeRequiredForExecution()), _target(copy._target)
 {
-    this->_gradeRequiredForSignature = copy._gradeRequiredForSignature;
-    this->_gradeRequiredForExecution = copy._gradeRequiredForExecution;
     *this = copy;
     std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
     return;

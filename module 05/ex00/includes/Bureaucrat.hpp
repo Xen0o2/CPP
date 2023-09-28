@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:53:42 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/15 20:01:15 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:46:27 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Bureaucrat
 		int			_grade;
 	public:
 		Bureaucrat( void );
-		Bureaucrat( std::string name );
+		Bureaucrat( std::string name, int grade );
 		Bureaucrat( Bureaucrat const &copy );
 		Bureaucrat	&operator=( Bureaucrat const &rhs );
 		~Bureaucrat( void );

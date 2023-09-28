@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 07:15:46 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:52:08 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:43:41 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int main(void)
 {
 	Intern		bob;
 	Form		*form;
-	Bureaucrat	karen("Karen");
-	karen.setGrade(50);
+	Bureaucrat	karen("Karen", 50);
 
 	// Test how all forms are created properly execpt for the last one
 	try

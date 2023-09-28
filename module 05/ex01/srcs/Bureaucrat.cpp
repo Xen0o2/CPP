@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:58 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/06/30 17:32:46 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:57:41 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@ Bureaucrat::Bureaucrat( void ): _name("default")
 	std::cout << "Bureaucrat default constructor called" << std::endl;
 	return;
 }
-
-Bureaucrat::Bureaucrat( std::string name ): _name(name)
+Bureaucrat::Bureaucrat( std::string name, int grade): _name(name)
 {
-	this->_grade = 1;
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	_grade = grade;
 	std::cout << "Bureaucrat string constructor called" << std::endl;
 	return;
 }
-
 Bureaucrat::Bureaucrat( Bureaucrat const &copy )
 {
 	std::cout << "Bureaucrat copy constructor called" << std::endl;

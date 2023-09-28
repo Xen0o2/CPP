@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 19:17:33 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/03 15:18:22 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:26:33 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ int main(void)
 		std::cout << std::endl;
 
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		Bureaucrat *a = new Bureaucrat("Assistant");
-		a->setGrade(45);
-		Bureaucrat *b = new Bureaucrat("CEO");
-		b->setGrade(1);
+		Bureaucrat *a = new Bureaucrat("Assistant", 45);
+		Bureaucrat *b = new Bureaucrat("CEO", 1);
 		Form *c = new PresidentialPardonForm("some dude");
 		// Form *d = new Form(*c);
 		// Form *d = new Form("Rent Contract", 140, 100); // you are not able to construct an abstract class here
@@ -148,8 +146,7 @@ int main(void)
 		std::cout << std::endl;
 
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		Bureaucrat *a = new Bureaucrat("Emperor");
-		a->setGrade(1);
+		Bureaucrat *a = new Bureaucrat("Emperor", 1);
 		PresidentialPardonForm *b = new PresidentialPardonForm("this other dude");
 		PresidentialPardonForm *c = new PresidentialPardonForm(*b);
 		std::cout << std::endl;
@@ -176,8 +173,7 @@ int main(void)
 		std::cout << std::endl;
 
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		Bureaucrat *a = new Bureaucrat("Emperor");
-		a->setGrade(1);
+		Bureaucrat *a = new Bureaucrat("Emperor", 1);
 		RobotomyRequestForm *b = new RobotomyRequestForm("Bender");
 		ShrubberyCreationForm *c = new ShrubberyCreationForm("christmas");
 		std::cout << std::endl;

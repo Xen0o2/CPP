@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alecoutr <alecoutr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:59:04 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/03 17:54:34 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:38:11 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,23 @@ class Form
 {
     protected:
         std::string const _name;
-        bool	_isSigned;
-        int		_gradeRequiredForSignature;
-		int		_gradeRequiredForExecution;
+        bool			_isSigned;
+        int const		_gradeRequiredForSignature;
+		int	const		_gradeRequiredForExecution;
         Form( void );
-        Form( std::string name );
+        Form( int gradeRequiredForSignature, int gradeRequiredForExecution );
+        Form( std::string name, int gradeRequiredForSignature, int gradeRequiredForExecution );
         Form( Form const &copy );
     public:
         Form &operator=( Form const &rhs );
         virtual ~Form( void );
 
-		std::string const getName( void ) const;
+		std::string getName( void ) const;
 		std::string	getIsSigned( void );
 		bool	getIsSignedBool( void ) const;
 		void	beSigned( Bureaucrat &bureaucrat );
-		int		getGradeRequiredForSignature( void );
-		void	setGradeRequiredForSignature( int gradeRequiredForSignature );
-		int		getGradeRequiredForExecution( void );
-		void	setGradeRequiredForExecution( int gradeRequiredForExecution );
+		int		getGradeRequiredForSignature( void ) const;
+		int		getGradeRequiredForExecution( void ) const;
 		void	execute( Bureaucrat const &executor ) const;
 		virtual void beExecuted( Bureaucrat const &executor ) const = 0; 
 		

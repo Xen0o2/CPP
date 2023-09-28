@@ -6,32 +6,26 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:29:21 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:50:51 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:50:42 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm( void ): Form("RobotomyRequestForm"), _target("default")
+RobotomyRequestForm::RobotomyRequestForm( void ): Form("RobotomyRequestForm", ROBOTOMY_SIGNATURE, ROBOTOMY_EXECUTION), _target("default")
 { 
-    this->_gradeRequiredForSignature = ROBOTOMY_SIGNATURE;
-    this->_gradeRequiredForExecution = ROBOTOMY_EXECUTION;
     std::cout << "RobotomyRequestForm default constructor called" << std::endl;
     return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm( std::string target ): Form("RobotomyRequestForm"), _target(target)
+RobotomyRequestForm::RobotomyRequestForm( std::string target ): Form("RobotomyRequestForm", ROBOTOMY_SIGNATURE, ROBOTOMY_EXECUTION), _target(target)
 {
-    this->_gradeRequiredForSignature = ROBOTOMY_SIGNATURE;
-    this->_gradeRequiredForExecution = ROBOTOMY_EXECUTION;
     std::cout << "RobotomyRequestForm string constructor for target " << target << " called" << std::endl;
     return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const &copy ): Form("RobotomyRequestForm"), _target(copy._target)
+RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const &copy ): Form("RobotomyRequestForm", copy.getGradeRequiredForSignature(), copy.getGradeRequiredForExecution()), _target(copy._target)
 {
-    this->_gradeRequiredForSignature = copy._gradeRequiredForSignature;
-    this->_gradeRequiredForExecution = copy._gradeRequiredForExecution;
     *this = copy;
     std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
     return;
@@ -67,7 +61,7 @@ void    RobotomyRequestForm::beExecuted( Bureaucrat const &executor ) const
 
 Form    *RobotomyRequestForm::makeForm( Form *form, std::string const &type, std::string const &target )
 {
-    if (!form && type == "robotomy request")
+    if (!form && type == "RobotomyRequestForm")
         return (new RobotomyRequestForm(target));
     return (form);
 }

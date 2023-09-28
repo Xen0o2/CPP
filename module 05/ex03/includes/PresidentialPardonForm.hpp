@@ -6,7 +6,7 @@
 /*   By: alecoutr <alecoutr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:37:47 by alecoutr          #+#    #+#             */
-/*   Updated: 2023/07/04 07:42:57 by alecoutr         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:46:20 by alecoutr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class PresidentialPardonForm: public Form
         PresidentialPardonForm( PresidentialPardonForm const &copy );
         PresidentialPardonForm &operator=( PresidentialPardonForm const &rhs );
         ~PresidentialPardonForm( void );
-
+        
         std::string getTarget( void ) const;
         void    beExecuted( Bureaucrat const &executor ) const;
         static Form    *makeForm( Form *form, std::string const &type, std::string const &target );
